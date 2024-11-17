@@ -11,9 +11,10 @@ def example_function3(z):
     Returns:
     str: A description based on the value of z.
     """
-    if z > 100:
+    if z > 100:  # Cyclomatic complexity +1
         return "Big number"
-    if z == 100:
+    if z == 100:  # Cyclomatic complexity +1
         return "Exactly 100"
-
     return "Small number"
+
+# Total Cyclomatic Complexity: 3

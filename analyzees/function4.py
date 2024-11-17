@@ -11,7 +11,9 @@ def example_function4(n):
     Returns:
     int: The factorial of the number.
     """
-    if n <= 1:
+    if n <= 1:  # Cyclomatic complexity +1
         return 1
 
     return n * example_function4(n - 1)
+
+# Total Cyclomatic Complexity: 2

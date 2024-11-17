@@ -11,9 +11,11 @@ def example_function5(a, b):
     Returns:
     str: A message indicating the relationship between the two numbers.
     """
-    if a > 0 and b > 0:
+    if a > 0 and b > 0:  # Cyclomatic complexity +2 (`if` and `and`)
         return "Both numbers are positive"
-    if a < 0 and b < 0:
+    if a < 0 and b < 0:  # Cyclomatic complexity +2 (`if` and `and`)
         return "Both numbers are negative"
 
     return "Mixed signs"
+
+# Total Cyclomatic Complexity: 3

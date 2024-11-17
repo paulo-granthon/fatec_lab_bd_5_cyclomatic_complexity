@@ -10,9 +10,11 @@ def example_function2(y):
     Returns:
     None
     """
-    while y > 0:
-        if y % 2 == 1:
+    while y > 0:  # Cyclomatic complexity +1
+        if y % 2 == 1:  # Cyclomatic complexity +1
             y -= 1
-        else:
+        else:  # Cyclomatic complexity +1
             y //= 2
         print(y)
+
+# Total Cyclomatic Complexity: 3
