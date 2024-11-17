@@ -1,24 +1,42 @@
 import os
-
+import argparse
 from analyzer import analyze_cyclomatic_complexity
 
 
-def main():
+def main(directory, debug=False):
     """
-    Main function to scan all Python files in the 'analyzees' directory and
-    print their cyclomatic complexity.
+    Analyze all Python files in the specified directory for cyclomatic
+    complexity.
 
-    It looks for `.py` files in the `analyzees/` directory, analyzes each one,
-    and outputs the cyclomatic complexity of the function in each file.
+    Args:
+    directory (str): The directory containing Python files to analyze.
+    debug (bool): Whether to enable debug mode for detailed output.
     """
+    print(f"Analyzing files in directory: {directory}")
+    print(f"Debug mode: {'ON' if debug else 'OFF'}")
 
-    analyzees_dir = "analyzees"
-    for file in os.listdir(analyzees_dir):
-        if file.endswith(".py"):
-            file_path = os.path.join(analyzees_dir, file)
-            complexity = analyze_cyclomatic_complexity(file_path)
-            print(f"{file}: Cyclomatic Complexity = {complexity}")
+    for filename in os.listdir(directory):
+        if filename.endswith(".py"):
+            file_path = os.path.join(directory, filename)
+            print(f"\nAnalyzing {filename}:")
+            complexity = analyze_cyclomatic_complexity(file_path, debug=debug)
+            print(f"Cyclomatic Complexity: {complexity}")
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="""
+        Analyze Cyclomatic Complexity in a directory of Python files
+        """
+    )
+    parser.add_argument(
+        "--directory", default="analyzees", required=False,
+        help="Path to the directory containing Python files to analyze"
+    )
+    parser.add_argument(
+        "--debug", action="store_true", required=False,
+        help="Enable debug mode to print detailed complexity analysis"
+    )
+    args = parser.parse_args()
+
+    main(args.directory, debug=args.debug)
